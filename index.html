@@ -21,7 +21,12 @@
     margin:0;background:var(--bone);color:var(--ink);
     font-family:var(--serif);font-size:18px;line-height:1.6;
   }
-  .wrap{max-width:760px;margin:0 auto;padding:0 26px;}
+  .wrap{
+    width:100%;max-width:1360px;margin:0 auto;
+    padding-left:5vw;padding-right:5vw;
+    padding-left:clamp(20px,5vw,72px);padding-right:clamp(20px,5vw,72px);
+  }
+  p{max-width:68ch;}
 
   .eyebrow{
     font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
@@ -43,7 +48,33 @@
   section{padding:40px 0;border-top:1px solid var(--rule);}
 
   /* history: plain block, then a boxed block beneath it */
+  .year-row{display:-webkit-box;display:-webkit-flex;display:flex;-webkit-flex-wrap:wrap;flex-wrap:wrap;}
+  .year-rail{-webkit-flex:0 0 168px;flex:0 0 168px;padding-right:34px;}
+  .year{
+    font-size:58px;line-height:.9;color:var(--army);margin:0 0 12px;
+    letter-spacing:-.02em;
+  }
+  .year-sub{
+    font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--army);
+    line-height:1.9;margin:0;
+  }
+  .year-body{-webkit-flex:1 1 340px;flex:1 1 340px;min-width:0;border-left:1px solid var(--rule);padding-left:34px;}
+  .year-body p{margin-bottom:16px;}
+  .turn{
+    font-size:21px;line-height:1.45;font-style:italic;
+    color:var(--forest);max-width:640px;
+    margin:30px 0 0;padding-left:202px;max-width:none;
+  }
+  @media (max-width:700px){
+    .year-rail{-webkit-flex:1 1 100%;flex:1 1 100%;padding-right:0;margin-bottom:20px;}
+    .year{font-size:46px;display:inline-block;margin:0 14px 0 0;vertical-align:middle;}
+    .year-sub{display:inline-block;vertical-align:middle;line-height:1.5;}
+    .year-body{border-left:none;padding-left:0;-webkit-flex:1 1 100%;flex:1 1 100%;}
+    .turn{padding-left:0;font-size:18px;margin-top:24px;}
+  }
+
   .col-box{
+    max-width:760px;
     border:1px solid var(--army);
     background:rgba(74,90,59,.04);
     padding:30px 32px;
@@ -176,6 +207,40 @@
   @media print{
     .page-two{page-break-before:always;}
   }
+
+  /* ---------- wide screens ---------- */
+  .split-2{display:-webkit-box;display:-webkit-flex;display:flex;-webkit-flex-wrap:wrap;flex-wrap:wrap;}
+  .split-2 .s-left{-webkit-flex:1 1 320px;flex:1 1 320px;min-width:0;padding-right:48px;}
+  .split-2 .s-right{-webkit-flex:1 1 440px;flex:1 1 440px;min-width:0;}
+  .split-2 .s-right p{max-width:62ch;}
+  .book-left p{max-width:60ch;}
+  .manifesto .kicker{font-size:26px;font-size:clamp(22px,2.4vw,30px);max-width:20ch;}
+  .access{margin-top:0;}
+
+  @media (min-width:1000px){
+    header{padding:72px 0 56px;}
+    header img{width:200px;height:200px;}
+    .welcome{max-width:20ch;font-size:52px;font-size:clamp(38px,4vw,58px);}
+    .lead{font-size:21px;max-width:52ch;}
+    section{padding:56px 0;}
+    .manifesto{padding:64px 0;}
+    .year-rail{-webkit-flex:0 0 210px;flex:0 0 210px;}
+    .year{font-size:76px;}
+    .turn{padding-left:244px;font-size:23px;}
+    .cycle li{grid-template-columns:150px 1fr;}
+    .prompts{display:-webkit-box;display:-webkit-flex;display:flex;-webkit-flex-wrap:wrap;flex-wrap:wrap;}
+    .prompt{-webkit-flex:0 0 50%;flex:0 0 50%;padding:24px 40px 24px 0;border-top:1px solid var(--rule);}
+    .prompt:last-child{border-bottom:none;}
+    .prompt p{max-width:46ch;}
+    .book-title{font-size:56px;font-size:clamp(44px,4.6vw,64px);}
+    .cta{padding:72px 0 78px;}
+  }
+
+  @media (max-width:999px){
+    .split-2 .s-left{padding-right:0;-webkit-flex:1 1 100%;flex:1 1 100%;}
+    .split-2 .s-right{-webkit-flex:1 1 100%;flex:1 1 100%;}
+    .access{margin-top:26px;}
+  }
 </style>
 </head>
 <body>
@@ -194,26 +259,41 @@
   <section class="history">
     <div class="wrap">
       <div class="col-plain">
-        <p class="eyebrow">1816 &middot; The year without a summer</p>
-        <p>A volcano called Tambora had erupted in Indonesia the year before, throwing up enough ash to dim the sun over an entire hemisphere. Europe simply didn't get a summer. It snowed in June. Harvests failed, bread ran short, and the rain came down for weeks without stopping.</p>
-        <p>Which is how a small party of English writers ended up shut inside the Villa Diodati, working through a book of German ghost stories by candlelight while the storms came off the water. Bored of reading them, Lord Byron proposed that each of them write one instead.</p>
+        <div class="year-row">
+          <div class="year-rail">
+            <p class="year">1816</p>
+            <p class="year-sub mono">The year<br>without a<br>summer</p>
+          </div>
+          <div class="year-body">
+            <p>Tambora had erupted in Indonesia the year before, throwing up enough ash to dim the sun over an entire hemisphere. Snow fell in June. Harvests rotted in the fields, bread ran short, and preachers stood up in front of their congregations and told them the world was ending.</p>
+            <p>Night after night the mountains went white with lightning, and the thunder shook the house a swollen moment later. A small party of English writers sat shut inside the Villa Diodati with the shutters closed, reading German ghost stories aloud by candlelight.</p>
+            <p>They talked about galvanism, the fashionable horror of the age: the discovery that a current could make dead muscle move. In London an audience had watched a hanged murderer wired to a battery, his jaw working, one eye coming open. They talked of spirits and animating principles until Percy Shelley bolted from the room shrieking at something nobody else could see.</p>
+          </div>
+        </div>
+
+        <p class="turn">It was against all of that, the failed summer, the storms, the corpses twitching on their tables, that Byron proposed they each write a ghost story.</p>
+
       </div>
       <div class="col-box">
         <p class="eyebrow">The girl nobody was watching</p>
         <p>In that room sat Mary Godwin: eighteen, unmarried, the only person there who had published nothing. For days she had nothing. Then came the image she said arrived in a waking dream: a young man kneeling beside the thing he had assembled, watching it open its eyes.</p>
-        <p>She wrote <em>Frankenstein</em>. It was published two years later with no name on it at all, because a novel that good under a woman's name would have been a liability. She was the youngest in the house and she beat every famous man in it.</p>
+        <p>She wrote <em>Frankenstein</em>. It was published two years later with no name on it at all, because a novel that good under a woman's name would have been a liability. She could not put her name on it. She did not need to. The book made her name for her and has been keeping it alive ever since.</p>
         <p>A group, a bad month, a prompt, a deadline. That's the whole recipe, and it still works.</p>
       </div>
     </div>
   </section>
 
   <section class="manifesto">
-    <div class="wrap">
-      <p class="eyebrow">Why we're doing this</p>
-      <p class="kicker">This club is about the female creative mind, and about keeping human thought in human hands.</p>
+    <div class="wrap split-2">
+      <div class="s-left">
+        <p class="eyebrow">Why we're doing this</p>
+        <p class="kicker">This club is about the female creative mind, and about keeping human thought in human hands.</p>
+      </div>
+      <div class="s-right">
       <p>We are the first generation of writers who can have the work done for us. A machine will hand you competent prose in nine seconds, and it will be fine, and it will be nobody's. What it cannot do is want something. It has never been eighteen and unpublished in a room full of famous men, and it has never had anything to prove.</p>
       <p>So we write by hand, in our own voices, on purpose. The strange sentence. The wrong-sounding image. The thing only you would have thought of, because only you have lived where you've lived. Your imagination has been running the whole time, quietly, in the background&hellip; this is where we turn the sound up.</p>
       <p>Everything read aloud in this room was written by the woman who signs it. That is the one rule with no exceptions.</p>
+      </div>
     </div>
   </section>
 
@@ -268,7 +348,8 @@
   <div class="divider page-two">Cycle one</div>
 
   <section class="book">
-    <div class="wrap">
+    <div class="wrap split-2">
+      <div class="s-left book-left">
       <p class="eyebrow">The reading</p>
       <h2 class="book-title">The Wax Child</h2>
       <p class="book-by">Olga Ravn, translated from the Danish by Martin Aitken</p>
@@ -277,13 +358,15 @@
       <p>What follows is a real witch trial: the whispers, the confessions pulled out of women under torture, the fire at the end of it. Ravn built the voice out of court records, letters, spells and household manuals, so the book moves like an incantation rather than a plot. It's short, strange, and it refuses to resolve.</p>
       <p class="aside">Fair warning: this one splits rooms. Half of us will find it hypnotic and half will find it airless. That argument is the first meeting.</p>
       <p class="buy"><a href="https://www.amazon.com/dp/B0F79YJZPW?ref=KC_GS_GB_US" target="_blank" rel="noopener">Buy the book &rarr;</a></p>
-
+      </div>
+      <div class="s-right">
       <div class="rotate access">
         <h3>Nobody has to buy anything.</h3>
         <p>That link is there because buying is easiest for some of us, but it should never be the reason a woman sits out a cycle. I'm working on keeping copies moving between us instead: a small shelf of club books passed hand to hand, so one copy can carry three or four of us through a cycle. Anyone who buys a book and is finished with it can put it in.</p>
         <p>Your library card is the other route, and it's a good one. Most systems lend ebooks and audiobooks free through Libby with nothing but a card number, and if they don't have a title yet you can usually ask them to get it.</p>
         <p>I'm also working on hosting what I can myself, so that some cycles the book is simply one tap away for all of us. Anything old enough to be out of copyright I can put up directly, and there's a great deal of it: gothic novels, ghost stories, the whole nineteenth century. For newer books I'm looking into what can be shared legitimately, and the passed-around shelf covers the rest.</p>
         <p>And if it ever comes down to money, tell me privately and it's handled, no explanation needed. Nobody is going to know, and nobody here is missing a cycle over the price of a paperback.</p>
+      </div>
       </div>
     </div>
   </section>
